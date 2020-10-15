@@ -47,6 +47,6 @@ struct TaskElementView: View {
 
 struct TaskElement_Previews: PreviewProvider {
     static var previews: some View {
-        TaskElementView(task: TaskElement( dateFrom: "Tuesday, 06 October 2020", dateTo: "Tuesday, 06 October 2020", title: "UI Design", text: "Do not fear failure"))
+        TaskElementView(task: TaskElement( title: "UI Design", dateFrom: "Tuesday, 06 October 2020", dateTo: "Tuesday, 06 October 2020", text: "Do not fear failure"))
     }
 }

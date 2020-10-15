@@ -18,7 +18,7 @@ class observer : ObservableObject{
     
     private var cancellables = Set<AnyCancellable>()
     
-    init(task: TaskElement = TaskElement( dateFrom: "",dateTo: "", title: "", text: "")) {
+    init(task: TaskElement = TaskElement( title: "", dateFrom: "",dateTo: "", text: "")) {
         self.task = task
         
         self.$task
@@ -46,7 +46,7 @@ class observer : ObservableObject{
                 let dateFrom = data["dateFrom"] as? String ?? ""
                 let dateTo = data["dateTo"] as? String ?? ""
                 let text = data["text"] as? String ?? ""
-                return TaskElement(dateFrom: dateFrom, dateTo: dateTo, title: title, text: text)
+                return TaskElement(title: title, dateFrom: dateFrom, dateTo: dateTo, text: text)
             }
         }
     }

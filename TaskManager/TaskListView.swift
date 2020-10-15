@@ -12,7 +12,7 @@ struct TaskListView: View {
     @State var isSettings: Bool = false
     @State var isSaved: Bool = false
     @State var shown: Bool = false
-    @State var selectedTask = TaskElement(dateFrom: "", dateTo: "", title: "", text: "")
+    @State var selectedTask = TaskElement(title: "", dateFrom: "", dateTo: "", text: "")
     var body: some View {
         NavigationView {
             ZStack {
