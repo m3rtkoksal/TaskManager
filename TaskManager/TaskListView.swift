@@ -37,7 +37,7 @@ struct TaskListView: View {
                     }
                     CustomSegmentedView()
                     ZStack {
-                        TaskFrameView()
+                        TaskFrameView() // scrollview inside
                         VStack {
                             Spacer()
                             HStack {
@@ -59,7 +59,7 @@ struct TaskListView: View {
                             }
                         }
                         NavigationLink(
-                            destination: NewTaskView(isShown: $shown, task: selectedTask),
+                            destination: NewTaskView(isShown: $shown).environmentObject(selectedTask),
                             isActive: $shown,
                             label: {
                                 Text("")

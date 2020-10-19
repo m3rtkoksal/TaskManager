@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TaskFrameView: View {
-    
+    @ObservedObject private var obser = observer()
     var body: some View {
         VStack(alignment: .leading){
             Text("Today task")
@@ -19,9 +19,9 @@ struct TaskFrameView: View {
 }
 
 struct ScrollViewTask: View {
-    @ObservedObject private var obser = observer()
-    @State var selectedTask = TaskElement(title: "", dateFrom: "", dateTo: "", text: "")
+    @EnvironmentObject var selectedTask : SelectedTask
     @State var shown: Bool = false
+    @ObservedObject private var obser = observer()
     var body: some View {
         
         ScrollView(.vertical) {
@@ -29,9 +29,7 @@ struct ScrollViewTask: View {
                 ForEach(self.obser.tasks) { task in
                     TaskElementView(task:task)
                         .onTapGesture {
-                            self.selectedTask = task
-                            print(task)
-                            self.shown.toggle()
+                            self.selectedTask.appendNewTask(task: task)
                         }
                 }
             }
@@ -40,7 +38,8 @@ struct ScrollViewTask: View {
             self.obser.fetchData()
         }
         .fullScreenCover(isPresented: $shown, content: {
-            NewTaskView(isShown: $shown, task: selectedTask)
+            NewTaskView(isShown: $shown)
+                .environmentObject(selectedTask)
         })
     }
 }

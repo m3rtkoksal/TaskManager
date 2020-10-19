@@ -19,7 +19,7 @@ struct NewTaskView: View {
     @State var taskTo = ""
     @State var taskNote = ""
     @Binding var isShown: Bool
-    @EnvironmentObject var task: TaskElement
+    @EnvironmentObject var task: SelectedTask
     var body: some View {
         NavigationView {
         VStack(alignment: .leading) {
@@ -98,7 +98,7 @@ func getDate(date: Date) -> String {
 
 struct NewTaskView_Previews: PreviewProvider {
     static var previews: some View {
-        NewTaskView( isShown: .constant(false), task: TaskElement(title: "", dateFrom: "", dateTo: "", text: ""))
+        NewTaskView( isShown: .constant(false)).environmentObject(TaskElement(title: "", dateFrom: "", dateTo: "", text: ""))
     }
 }
 

@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import FirebaseFirestore
 
 class TaskElement: ObservableObject, Identifiable {
     var id : String = UUID().uuidString
@@ -15,11 +14,20 @@ class TaskElement: ObservableObject, Identifiable {
     var title: String
     var text: String
     
+    var item = [TaskElement]()
     init(title: String, dateFrom: String, dateTo: String, text: String) {
         self.title = title
         self.dateFrom = dateFrom
         self.dateTo = dateTo
         self.text = text
+    }
+}
+
+class SelectedTask: ObservableObject {
+    @Published var item = [TaskElement]()
+    
+    func appendNewTask(task: TaskElement) {
+        item.append(TaskElement(title: task.title, dateFrom: task.dateFrom , dateTo: task.dateTo , text: task.text))
     }
 }
 
