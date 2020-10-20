@@ -29,6 +29,7 @@ struct ScrollViewTask: View {
                 ForEach(self.obser.tasks) { task in
                     TaskElementView(task:task)
                         .onTapGesture {
+                            self.shown.toggle()
                             self.selectedTask.appendNewTask(task: task)
                         }
                 }
@@ -38,7 +39,7 @@ struct ScrollViewTask: View {
             self.obser.fetchData()
         }
         .fullScreenCover(isPresented: $shown, content: {
-            NewTaskView(isShown: $shown)
+            NewTaskView()
                 .environmentObject(selectedTask)
         })
     }

@@ -18,14 +18,13 @@ struct NewTaskView: View {
     @State var taskToDate = Date()
     @State var taskTo = ""
     @State var taskNote = ""
-    @Binding var isShown: Bool
     @EnvironmentObject var task: SelectedTask
     var body: some View {
         NavigationView {
         VStack(alignment: .leading) {
             Group {
                 Text("Task Title")
-                TextField("Title", text:$taskTitle )
+                TextField("Title", text:$taskTitle)
                 Divider()
                 Text("From")
                 DatePicker("", selection: $taskFromDate, in: Date()..., displayedComponents: [.date, .hourAndMinute])
@@ -88,6 +87,8 @@ struct NewTaskView: View {
     }
 }
 
+
+
 func getDate(date: Date) -> String {
     let formatter = DateFormatter()
     formatter.dateStyle = .full
@@ -98,7 +99,7 @@ func getDate(date: Date) -> String {
 
 struct NewTaskView_Previews: PreviewProvider {
     static var previews: some View {
-        NewTaskView( isShown: .constant(false)).environmentObject(TaskElement(title: "", dateFrom: "", dateTo: "", text: ""))
+        NewTaskView()
     }
 }
 

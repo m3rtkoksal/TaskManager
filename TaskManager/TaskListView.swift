@@ -11,8 +11,8 @@ struct TaskListView: View {
     @State private(set) var data = ""
     @State var isSettings: Bool = false
     @State var isSaved: Bool = false
-    @State var shown: Bool = false
-    @State var selectedTask = TaskElement(title: "", dateFrom: "", dateTo: "", text: "")
+//    @State var selectedTask = TaskElement(title: "", dateFrom: "", dateTo: "", text: "")
+    @EnvironmentObject var selectedTask : SelectedTask
     var body: some View {
         NavigationView {
             ZStack {
@@ -59,8 +59,8 @@ struct TaskListView: View {
                             }
                         }
                         NavigationLink(
-                            destination: NewTaskView(isShown: $shown).environmentObject(selectedTask),
-                            isActive: $shown,
+                            destination: NewTaskView(),
+                            isActive: $isSaved,
                             label: {
                                 Text("")
                             })

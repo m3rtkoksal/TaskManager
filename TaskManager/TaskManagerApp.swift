@@ -20,8 +20,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct TaskManagerApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
+        WindowGroup { ContentView().environmentObject(SelectedTask()) }
     }
 }

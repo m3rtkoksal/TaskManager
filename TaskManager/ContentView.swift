@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State var nextPage: Bool = false
+    @EnvironmentObject var selectedTask : SelectedTask
     var body: some View {
         NavigationView {
         ZStack {
@@ -45,7 +46,7 @@ struct ContentView: View {
                     .frame(width: UIScreen.main.bounds.width - 40, height: 80, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 })
                 NavigationLink(
-                    destination: TaskListView(),
+                    destination: TaskListView().environmentObject(selectedTask),
                     isActive: $nextPage,
                     label: {
                         Text("")
